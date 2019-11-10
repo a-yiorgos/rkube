@@ -1,0 +1,16 @@
+# If you intened to deploy Kubernetes in an air-gapped environment,
+# please consult the documentation on how to configure custom RKE images.
+nodes:
+- address: 192.168.98.100
+  role:
+  - controlplane
+  - worker
+  - etcd
+  hostname_override: rkube
+  user: vagrant
+network:
+  plugin: calico
+  options: {}
+  node_selector: {}
+system_images:
+  kubernetes: rancher/hyperkube:v1.15.5-rancher1

@@ -1,0 +1,61 @@
+---
+- name: configure VM to become rkube ready
+  hosts: all
+  become: yes
+  tasks:
+    - name: install aptitude and update cache
+      apt:
+        name: aptitude
+        state: latest
+        update_cache: yes
+
+    - name: install docker
+      apt:
+        name: docker.io
+        state: latest
+
+    - name: enable docker daemon
+      systemd:
+        name: docker
+        enabled: yes
+        state: restarted
+
+    - name: add vagrant user to docker group
+      user:
+        name: vagrant
+        groups: docker
+
+    - name: get kubectl
+      snap:
+        name: kubectl
+        channel: stable
+        classic: yes
+        state: present
+
+    - name: get rke executable
+      get_url:
+        url: https://github.com/rancher/rke/releases/download/v0.3.2/rke_linux-amd64
+        dest: /usr/local/bin/rke
+        mode: "0755"
+        force: no
+
+    - name: generate ssh key pair for user vagrant
+      openssh_keypair:
+        comment: rkube
+        path: /home/vagrant/.ssh/id_rsa
+        owner: vagrant
+        group: vagrant
+        state: present
+
+    - name: update authorized_keys
+      authorized_key:
+        user: vagrant
+        key: "{{ lookup('file', '/home/vagrant/.ssh/id_rsa.pub') }}"
+        state: present
+
+    - name: spin up RKE single node cluster
+      become_user: vagrant
+      command: rke up --config /vagrant/cluster.yml
+      args:
+        creates: /vagrant/kube_config_cluster.yml
+
