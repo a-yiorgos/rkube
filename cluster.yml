@@ -9,7 +9,7 @@ nodes:
   hostname_override: rkube
   user: vagrant
 network:
-  plugin: calico
+  plugin: canal
   options: {}
   node_selector: {}
 system_images:
