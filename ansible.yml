@@ -9,22 +9,28 @@
         state: latest
         update_cache: yes
 
+    - name: edit /etc/hosts
+      lineinfile:
+        insertafter: EOF
+        path: /etc/hosts
+        line: "192.168.98.100 rkube"
+
     - name: install docker
       apt:
-        name: docker.io
+        name: "docker.io"
         state: latest
 
     - name: enable docker daemon
       systemd:
         name: docker
         enabled: yes
-        state: restarted
+        state: started
 
     - name: add vagrant user to docker group
       user:
         name: vagrant
         groups: docker
-
+          
     - name: get kubectl
       snap:
         name: kubectl
@@ -34,7 +40,7 @@
 
     - name: get rke executable
       get_url:
-        url: https://github.com/rancher/rke/releases/download/v1.0.4/rke_linux-amd64
+        url: https://github.com/rancher/rke/releases/download/v1.0.6/rke_linux-amd64
         dest: /usr/local/bin/rke
         mode: "0755"
         force: no
