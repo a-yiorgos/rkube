@@ -11,7 +11,7 @@ nodes:
   user: vagrant
 addon_job_timeout: 300
 network:
-  plugin: canal
+  plugin: calico
   options: {}
   node_selector: {}
 system_images:
