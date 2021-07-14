@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "ubuntu/focal64"
   config.vm.hostname = "rkube"
 
   # Disable automatic box update checking. If you disable this, then
@@ -74,7 +74,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :ansible_local, run: "once" do |ansible|
     ansible.playbook = "ansible.yml"
-    ansible.install_mode = "pip"
   end
 
 end

@@ -15,6 +15,7 @@ network:
   options: {}
   node_selector: {}
 system_images:
-  kubernetes: rancher/hyperkube:v1.17.4-rancher1
-  #kubernetes: rancher/hyperkube:v1.16.8-rancher1
-  #rancher/hyperkube:v1.15.11-rancher1
+  #kubernetes: rancher/hyperkube:v1.18.20-rancher1
+  kubernetes: rancher/hyperkube:v1.20.8-rancher1
+  #kubernetes: rancher/hyperkube:v1.17.17-rancher2
+  #kubernetes: rancher/hyperkube:v1.19.12-rancher1
