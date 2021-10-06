@@ -15,7 +15,9 @@ network:
   options: {}
   node_selector: {}
 system_images:
+  # rke config -a -s| grep hyper
+  #kubernetes: rancher/hyperkube:v1.20.11-rancher1
   #kubernetes: rancher/hyperkube:v1.18.20-rancher1
-  kubernetes: rancher/hyperkube:v1.20.8-rancher1
-  #kubernetes: rancher/hyperkube:v1.17.17-rancher2
-  #kubernetes: rancher/hyperkube:v1.19.12-rancher1
+  kubernetes: rancher/hyperkube:v1.21.5-rancher1
+  #kubernetes: rancher/hyperkube:v1.19.15-rancher1
+
