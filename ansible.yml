@@ -40,7 +40,7 @@
 
     - name: get rke executable
       get_url:
-        url: https://github.com/rancher/rke/releases/download/v1.2.9/rke_linux-amd64
+        url: https://github.com/rancher/rke/releases/download/v1.3.1/rke_linux-amd64
         dest: /usr/local/bin/rke
         mode: "0755"
         force: no
